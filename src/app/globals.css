@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom */
+:root{
+  --sand:#f4e6d1;
+  --desert:#d9b78f;
+  --sunset:#b36b00;
+  --night:#2d2a26;
+}
+
+html,body,#root{
+  height:100%;
+}
+
+body {
+  background-color: var(--sand);
+  color: var(--night);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Decorative grain texture for hero overlay */
+.hero-grain {
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* Buttons */
+.btn-primary{
+  display: inline-block;
+  padding-left: 1.5rem; /* 6 */
+  padding-right: 1.5rem; /* 6 */
+  padding-top: 0.75rem; /* 3 */
+  padding-bottom: 0.75rem; /* 3 */
+  border-radius: 1.25rem; /* 2xl */
+  font-weight: 600; /* font-semibold */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+  background: linear-gradient(90deg,var(--sunset),#d98b3a);
+  color: white;
+}
