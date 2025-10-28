@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 
 export default function Hero(){
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center hero-grain"
-        style={{ backgroundImage: "url('/images/camelos.jpeg')" }}
-      />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#d8b98a] to-[#f4e6d1]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#d8b98a] to-[#f4e6d1]" />
+      
+
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30" />
       <motion.div initial={{opacity:0, y:30}} animate={{opacity:1, y:0}} transition={{duration:0.9}} className="relative z-10 text-center px-6">
         <h1 className="font-display text-4xl md:text-6xl text-white font-bold drop-shadow-lg max-w-4xl mx-auto">Descubra a alma do deserto angolano</h1>

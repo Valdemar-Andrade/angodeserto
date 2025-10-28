@@ -3,9 +3,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const experiences = [
-  { id:1, title: "Passeios com Camelos", desc:"Percorra as dunas ao pôr do sol acompanhado por guias locais.", img:"/images/camelo.jpeg" },
-  { id:2, title: "Noites nas Tendas", desc:"Hospede-se em tendas tradicionais com conforto e autenticidade.", img:"/images/pessoa no camelo 2.jpeg" },
-  { id:3, title: "Gastronomia Local", desc:"Sabores locais preparados com ingredientes regionais.", img:"/images/pessoa no camelo.jpeg" },
+  { id:1, title: "Passeios com Camelos", desc:"Percorra as dunas ao pôr do sol acompanhado por guias locais.", img:"/images/pessoa no camelo 2.jpeg" },
+  { id:2, title: "Noites nas Tendas", desc:"Hospede-se em tendas tradicionais com conforto e autenticidade.", img:"/images/tenda 2.jpeg" },
+  { id:3, title: "Gastronomia Local", desc:"Sabores locais preparados com ingredientes regionais.", img:"/images/amigos.jpeg" },
 ];
 
 export default function Experiences(){

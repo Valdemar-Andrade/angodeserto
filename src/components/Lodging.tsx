@@ -5,19 +5,21 @@ export default function Lodging(){
     <section id="lodging" className="py-16">
         <h3 className="font-display text-2xl mb-6">Hospedagem</h3>
         <div className="grid md:grid-cols-2 gap-6 items-center">
-            <Image
-              src="/images/camelo.jpeg"
-              alt="Camelo no deserto"
-              width={800}
-              height={400}
-              className="w-full h-64 object-cover"
-              style={{ objectFit: "cover" }}
-              priority
-            />
+            <div className="rounded-2xl overflow-hidden shadow">
+              <Image
+                src="/images/tenda 1.jpeg"
+                alt="Tenda no deserto"
+                width={800}
+                height={400}
+                className="w-full h-64 object-cover"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </div>
             <div className="rounded-2xl overflow-hidden shadow">
                 <Image
-                  src="/images/camelos.jpeg"
-                  alt="Camelo no desertos"
+                  src="/images/repouso.jpeg"
+                  alt="Repouso no deserto"
                   width={800}
                   height={400}
                   className="w-full h-64 object-cover"

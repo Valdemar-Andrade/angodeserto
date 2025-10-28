@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image"; // Import Image from next/image
 
 export default function Header(){
   const [open, setOpen] = useState(false);
@@ -9,7 +10,8 @@ export default function Header(){
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
         <Link href="/">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-desert to-sunset flex items-center justify-center text-white font-bold">AD</div>
+            <Image src="/images/logotipo.jpg" alt="Ango Deserto logo" width={40} height={40} className="rounded-full object-cover bg-gray-100" />
+
             <div>
               <div className="font-display text-lg">Ango Deserto</div>
               <div className="text-xs text-gray-600 -mt-1">Rota dos Camelos</div>
