@@ -10,15 +10,15 @@ export default function Contact(){
           <div className="mt-6 rounded-lg overflow-hidden shadow">
             <iframe
               title="Localização Ango Deserto"
-              src="https://www.google.com/maps/embed?pb=!1m18!2m12"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7706.92157282621!2d12.646797896300393!3d-15.022608429872806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ba3985bac510665%3A0xcd6f0321be1e54b5!2sCaraculo!5e0!3m2!1spt-PT!2sao!4v1761742193503!5m2!1spt-PT!2sao"
               className="w-full h-64 border-0"
               loading="lazy"
             />
           </div>
 
           <div className="mt-4 text-sm text-gray-600">
-            <p>Telefone: <a href="tel:+244000000000" className="underline">+244 ...</a> (a preencher)</p>
-            <p>Redes: <a href="https://www.instagram.com/angodeserto" target="_blank" className="underline">Instagram</a> · <a href="https://www.facebook.com/yourprofile" target="_blank" className="underline">Facebook</a> · <a href="https://www.tiktok.com/@angodeserto" target="_blank" className="underline">TikTok</a></p>
+            <p>Telefone: <a href="tel:+244000000000" className="underline">+244 ...</a></p>
+            <p>Redes: <a href="https://www.instagram.com/angodeserto" target="_blank" className="underline">Instagram</a> · <a href="https://www.tiktok.com/@angodeserto" target="_blank" className="underline">TikTok</a></p>
           </div>
         </div>
 

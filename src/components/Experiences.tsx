@@ -21,9 +21,8 @@ export default function Experiences(){
             <div className="p-5">
               <h4 className="font-semibold mb-2">{exp.title}</h4>
               <p className="text-sm text-gray-600">{exp.desc}</p>
-              <div className="mt-4">
-                <button className="px-4 py-2 rounded-full border border-desert text-desert text-sm">Saber mais</button>
-              </div>
+              <br></br>
+              <br></br>
             </div>
           </motion.article>
         ))}
