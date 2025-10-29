@@ -18,7 +18,7 @@ export default function Contact(){
 
           <div className="mt-4 text-sm text-gray-600">
             <p>Telefone: <a href="tel:+244000000000" className="underline">+244 ...</a> (a preencher)</p>
-            <p>Redes: Instagram · Facebook</p>
+            <p>Redes: <a href="https://www.instagram.com/angodeserto" target="_blank" className="underline">Instagram</a> · <a href="https://www.facebook.com/yourprofile" target="_blank" className="underline">Facebook</a> · <a href="https://www.tiktok.com/@angodeserto" target="_blank" className="underline">TikTok</a></p>
           </div>
         </div>
 
