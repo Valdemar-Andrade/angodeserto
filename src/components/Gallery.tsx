@@ -19,7 +19,7 @@ export default function Gallery() {
             className="w-full h-[400px] object-cover"
             onPlay={() => setIsPlaying(true)}
           >
-            <source src="/images/video destaque.mp4" type="video/mp4" />
+            <source src="/videos/video destaque.mp4" type="video/mp4" />
           </video>
 
           {!isPlaying && (

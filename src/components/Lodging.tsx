@@ -4,43 +4,54 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Lodging() {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  return (
+    const videos = [
+    "/videos/quarto.mp4",
+    "/videos/video 2.mp4",
+    "/videos/video 3.mp4",
+    "/videos/video 4.mp4"
+    ];
+
+    const [current, setCurrent] = useState(0);
+    const next = () => setCurrent((current + 1) % videos.length);
+    const prev = () => setCurrent((current - 1 + videos.length) % videos.length);
+
+    return (
     <section id="lodging" className="py-16">
-      <h3 className="font-display text-2xl mb-6">Hospedagem</h3>
+        <h3 className="font-display text-2xl mb-6">Hospedagem</h3>
 
-      {/* Imagens lado a lado */}
-      <div className="grid md:grid-cols-2 gap-6 items-center">
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="relative rounded-2xl overflow-hidden shadow-lg"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10" />
-          <Image
-            src="/images/tenda 1.jpeg"
-            alt="Tenda no deserto"
-            width={800}
-            height={450}
-            className="w-full h-72 object-cover"
-            priority
-          />
-        </motion.div>
+        {/* Imagens lado a lado */}
+        <div className="grid md:grid-cols-2 gap-6 items-center">
+            <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="relative rounded-2xl overflow-hidden shadow-lg"
+                >
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10" />
+                <Image
+                    src="/images/tenda 1.jpeg"
+                    alt="Tenda no deserto"
+                    width={800}
+                    height={450}
+                    className="w-full h-72 object-cover"
+                    priority
+                />
+            </motion.div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="relative rounded-2xl overflow-hidden shadow-lg"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10" />
-          <Image
-            src="/images/repouso.jpeg"
-            alt="Repouso no deserto"
-            width={800}
-            height={450}
-            className="w-full h-72 object-cover"
-          />
-        </motion.div>
-      </div>
+            <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="relative rounded-2xl overflow-hidden shadow-lg"
+            >
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 z-10" />
+                <Image
+                    src="/images/casa de hospede.jpeg"
+                    alt="Repouso no deserto"
+                    width={800}
+                    height={450}
+                    className="w-full h-72 object-cover"
+                />
+            </motion.div>
+        </div>
 
       {/* Cards */}
       <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -59,80 +70,93 @@ export default function Lodging() {
             e serviço local acolhedor.
           </p>
 
-          <button
-            onClick={() => setIsOpen(true)}
-            className="mt-4 self-start text-sm font-medium text-indigo-600 hover:underline"
-          >
-            Ver quartos
-          </button>
+            <button
+                onClick={() => setIsOpen(true)}
+                className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-[#d9b78f] to-[#c49a68] shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300"
+                >
+                <span>Ver quartos</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
         </article>
       </div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {isOpen && (
-        	<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				onClick={() => setIsOpen(false)}
-				className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4 z-[100]"
-			>
-            <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-2xl p-5 max-w-4xl w-full shadow-2xl overflow-hidden border border-[#d9b78f]/50"
+    {/* MODAL */}
+    <AnimatePresence>
+    {isOpen && (
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => setIsOpen(false)}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4 z-[100]"
+        >
+        <motion.div
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.92, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative bg-white rounded-2xl p-6 max-w-3xl w-full shadow-2xl border border-[#d9b78f]/50 overflow-hidden"
+        >
+
+            {/* Botão fechar */}
+            <button
+            onClick={() => setIsOpen(false)}
+            className="absolute right-4 top-3 text-3xl text-gray-700 hover:text-black"
             >
-            	{/* Fechar */}
-				<button
-					onClick={() => setIsOpen(false)}
-					className="absolute right-4 top-3 text-3xl text-gray-700 hover:text-black"
-				>
-                ×
-              	</button>
+            ×
+            </button>
 
-              	<div className="grid md:grid-cols-2 gap-4 mt-8">
+            <h4 className="text-xl font-semibold mb-4 text-center text-[#2d2a26]">
+            Casa de Hóspedes — Interior
+            </h4>
 
-					{/* IMAGENS COM BORDAS DOURADAS SUAVES */}
-					<div className="relative h-60 md:h-72 rounded-xl overflow-hidden shadow-lg border border-[#d9b78f]/60">
-					<Image
-						src="/images/casa de hospede.jpeg"
-						alt="Casa de hóspedes"
-						fill
-						className="object-cover"
-					/>
-					<div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#d9b78f]/25 pointer-events-none" />
-					</div>
+            {/* Player principal */}
+            <div className="relative rounded-xl overflow-hidden border border-[#d9b78f]/60 bg-black shadow-lg">
+            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                <video
+                key={videos[current]} // reinicia quando troca
+                controls
+                className="absolute inset-0 w-full h-full"
+                >
+                <source src={videos[current]} type="video/mp4" />
+                </video>
+            </div>
 
-					<div className="relative h-60 md:h-72 rounded-xl overflow-hidden shadow-lg border border-[#d9b78f]/60">
-					<Image
-						src="/images/cama.PNG"
-						alt="Cama"
-						fill
-						className="object-cover"
-					/>
-					<div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#d9b78f]/25 pointer-events-none" />
-					</div>
+            {/* Navegação */}
+            <button
+                onClick={prev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md"
+            >
+                ‹
+            </button>
 
-					{/* VIDEO RESPONSIVO SEM ZOOM */}
-					<div className="md:col-span-2 rounded-xl overflow-hidden shadow-lg border border-[#d9b78f]/60 mt-2">
-						<div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-							<video
-							controls
-							className="absolute inset-0 w-full h-full object-contain bg-black"
-							>
-							<source src="/images/quarto.mp4" type="video/mp4" />
-							</video>
-						</div>
-					</div>
+            <button
+                onClick={next}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md"
+            >
+                ›
+            </button>
+            </div>
 
-              	</div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* Indicadores (bolinhas) */}
+            <div className="flex justify-center gap-2 mt-3">
+            {videos.map((_, i) => (
+                <div
+                key={i}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    i === current ? "bg-[#d9b78f]" : "bg-gray-300"
+                }`}
+                />
+            ))}
+            </div>
+
+        </motion.div>
+        </motion.div>
+    )}
+    </AnimatePresence>
 
     </section>
   );
