@@ -17,7 +17,7 @@ export default function Contact() {
         <div className="space-y-6">
           {/* WhatsApp — Botão Destaque */}
           <a
-            href="https://wa.me/244XXXXXXXXX"
+            href="https://wa.me/+244923745178"
             target="_blank"
             className="flex items-center gap-4 p-4 rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all bg-gradient-to-r from-[#d8b98a] to-[#c49a68] text-white"
           >
