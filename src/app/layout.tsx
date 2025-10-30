@@ -18,8 +18,45 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Ango Deserto | Rota dos Camelos",
-  description: "Turismo ecológico e cultural no deserto angolano — Ango Deserto.",
+  metadataBase: new URL("https://www.angodeserto.com"),
+  title: "Ango Deserto — Turismo no Coração do Namibe",
+  description:
+    "Experiências autênticas no deserto angolano: passeios de camelo, hospedagem em tendas tradicionais e imersão cultural no Namibe.",
+  keywords: [
+    "Turismo Namibe",
+    "Deserto Angola",
+    "Passeios de Camelo",
+    "Viagens Angola",
+    "Ecoturismo Namibe",
+    "Caraculo",
+    "Visitar Namibe",
+  ],
+
+  openGraph: {
+    title: "Ango Deserto — Experiências no Deserto Angolano",
+    description:
+      "Descubra experiências culturais e naturais únicas no deserto do Namibe.",
+    url: "https://www.angodeserto.com",
+    siteName: "Ango Deserto",
+    images: [
+      {
+        url: "https://www.angodeserto.com/images/share-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Paisagem do deserto com camelos ao pôr do sol.",
+      },
+    ],
+    locale: "pt_PT",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Ango Deserto — Turismo no Coração do Namibe",
+    description:
+      "Experiências autênticas no deserto angolano com cultura e natureza.",
+    image: "https://www.angodeserto.com/images/share-preview.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
