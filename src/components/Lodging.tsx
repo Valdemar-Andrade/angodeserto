@@ -98,7 +98,7 @@ export default function Lodging() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.92, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white rounded-2xl p-6 max-w-3xl w-full shadow-2xl border border-[#d9b78f]/50 overflow-hidden"
+            className="relative bg-white rounded-2xl p-6 max-w-3xl w-full shadow-2xl border border-[#d9b78f]/50 overflow-hidden max-h-[90vh] flex flex-col"
         >
 
             {/* Botão fechar */}
@@ -114,12 +114,12 @@ export default function Lodging() {
             </h4>
 
             {/* Player principal */}
-            <div className="relative rounded-xl overflow-hidden border border-[#d9b78f]/60 bg-black shadow-lg">
-            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+            <div className="relative rounded-xl overflow-hidden border border-[#d9b78f]/60 bg-black shadow-lg flex-1">
+            <div className="relative w-full h-full min-h-[40vh] md:min-h-[55vh]">
                 <video
-                key={videos[current]} // reinicia quando troca
+                key={videos[current]}
                 controls
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full object-contain bg-black"
                 >
                 <source src={videos[current]} type="video/mp4" />
                 </video>
@@ -128,21 +128,21 @@ export default function Lodging() {
             {/* Navegação */}
             <button
                 onClick={prev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md z-20"
             >
                 ‹
             </button>
 
             <button
                 onClick={next}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md z-20"
             >
                 ›
             </button>
             </div>
 
             {/* Indicadores (bolinhas) */}
-            <div className="flex justify-center gap-2 mt-3">
+            <div className="flex justify-center gap-2 mt-4 pb-2">
             {videos.map((_, i) => (
                 <div
                 key={i}
