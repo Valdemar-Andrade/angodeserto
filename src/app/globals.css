@@ -336,6 +336,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .route-film summary:hover { text-decoration: underline; text-underline-offset: .22rem; }
 .route-film summary svg { width: .86rem; height: .86rem; }
 .route-film video { width: 100%; max-width: 30rem; aspect-ratio: 480 / 272; background: var(--deep-night); }
+.route-film[open] video { background-image: url("/media/filme-rota-poster.webp"); background-size: cover; }
 .route-film p { max-width: 29rem; margin-top: .55rem; font-size: .79rem; }
 
 .experiences-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .95fr); gap: clamp(1.5rem, 5vw, 4.5rem); }

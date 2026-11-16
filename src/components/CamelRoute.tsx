@@ -23,7 +23,7 @@ export default function CamelRoute() {
           </a>
           <details className="route-film">
             <summary><FiPlay aria-hidden="true" /> Ver o filme da Rota</summary>
-            <video controls playsInline preload="none" poster="/media/filme-rota-poster.webp" aria-label="Camelos a atravessar a planície de Caraculo, vídeo sem áudio">
+            <video controls playsInline preload="none" aria-label="Camelos a atravessar a planície de Caraculo, vídeo sem áudio">
               <source src="/media/filme-rota.mp4" type="video/mp4" />
               <a href="/media/filme-rota.mp4">Abrir o vídeo da Rota</a>
             </video>
