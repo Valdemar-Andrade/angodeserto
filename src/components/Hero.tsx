@@ -4,7 +4,7 @@ import { photos } from "../content/photos";
 
 const desktopMedia = "(min-width: 760px)";
 const mobileMedia = "(width < 760px)";
-const desktopSizes = "(min-width: 1536px) 1536px, 100vw";
+const desktopSizes = "100vw";
 const mobileSizes = "(min-width: 640px) 100vw, 640px";
 const heroAlt = "Camelos da Angodeserto no Namibe";
 const desktopAvif = "/media/caraculo-camelos-hero-640.avif 640w, /media/caraculo-camelos-hero-960.avif 960w, /media/caraculo-camelos-hero-1200.avif 1200w";

@@ -388,19 +388,19 @@ figcaption {
 .hero-visual { position: relative; overflow: hidden; }
 .hero-photo {
   display: block;
-  width: min(100%, 96rem);
+  width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
-  margin-inline: auto;
   object-fit: cover;
   object-position: 52% 43%;
 }
 .hero-visual::after {
+  --hero-copy-shade: linear-gradient(90deg, #241811e6 0%, #251a13b9 23%, #281c1475 43%, transparent 73%);
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, #241811e6 0%, #251a13b9 23%, #281c1475 43%, transparent 73%),
+    var(--hero-copy-shade),
     linear-gradient(180deg, #21161090 0%, transparent 22%, transparent 72%, #20160e91 94%, #241a13 100%);
   content: "";
   pointer-events: none;
@@ -628,7 +628,9 @@ figcaption {
 /* Responsive framing */
 
 @media (min-width: 96rem) {
-  .hero-visual { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+  .hero-visual::after {
+    --hero-copy-shade: radial-gradient(ellipse 45rem 30rem at calc(50% - 15rem) 51%, #241811c7, #241811a8 53%, #2418114d 76%, transparent);
+  }
 }
 @media (max-width: 759px) {
   .hero { min-height: max(39rem, 100svh); }
