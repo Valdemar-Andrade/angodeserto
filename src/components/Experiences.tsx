@@ -1,31 +1,29 @@
-"use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { photos } from "../content/photos";
 
-const experiences = [
-  { id:1, title: "Passeios com Camelos", desc:"Percorra as dunas ao pôr do sol acompanhado por guias locais.", img:"/images/pessoa no camelo 2.jpeg" },
-  { id:2, title: "Noites nas Tendas", desc:"Hospede-se em tendas tradicionais com conforto e autenticidade.", img:"/images/tenda 2.jpeg" },
-  { id:3, title: "Gastronomia Local", desc:"Sabores locais preparados com ingredientes regionais.", img:"/images/amigos.jpeg" },
-];
+export default function Experiences() {
+  const { gathering, campfire } = photos;
 
-export default function Experiences(){
   return (
-    <section id="experiences" className="py-16">
-      <h3 className="font-display text-2xl mb-6">Experiências</h3>
-      <div className="grid md:grid-cols-3 gap-6">
-        {experiences.map(exp => ( 
-          <motion.article key={exp.id} whileHover={{y:-6}} className="bg-white rounded-2xl overflow-hidden shadow">
-            <div className="relative h-44 w-full overflow-hidden">
-              <Image src={exp.img} alt={exp.title} fill className="object-cover" />
-            </div>
-            <div className="p-5">
-              <h4 className="font-semibold mb-2">{exp.title}</h4>
-              <p className="text-sm text-gray-600">{exp.desc}</p>
-              <br></br>
-              <br></br>
-            </div>
-          </motion.article>
-        ))}
+    <section id="experiences" className="route-experiences" aria-labelledby="experiences-title" tabIndex={-1}>
+      <header className="container experiences-heading">
+        <p className="eyebrow chapter-label">A vivência</p>
+        <h3 id="experiences-title" className="chapter-heading">O deserto <em>em boa companhia.</em></h3>
+        <p className="section-text">Partilhe o passeio e a mesa com família ou amigos. Ao cair da noite, as conversas continuam à volta da fogueira.</p>
+      </header>
+      <div className="container experiences-spread">
+        <figure className="experience-gathering">
+          <div className="photo-frame experience-gathering-photo scene-reveal">
+            <Image src={gathering.src} alt={gathering.alt} width={gathering.width} height={gathering.height} sizes="(min-width: 1280px) 690px, (min-width: 760px) 55vw, 92vw" />
+          </div>
+          <figcaption>{gathering.caption}</figcaption>
+        </figure>
+        <figure className="experience-campfire">
+          <div className="photo-frame experience-campfire-photo scene-reveal">
+            <Image src={campfire.src} alt={campfire.alt} width={campfire.width} height={campfire.height} sizes="(min-width: 1280px) 350px, (min-width: 760px) 29vw, 73vw" />
+          </div>
+          <figcaption>{campfire.caption}</figcaption>
+        </figure>
       </div>
     </section>
   );

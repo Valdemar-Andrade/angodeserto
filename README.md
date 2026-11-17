@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Angodeserto V2
 
-## Getting Started
+Website público da Angodeserto e da Rota dos Camelos, em Caraculo, no Namibe. A homepage é pré-renderizada com Next.js App Router. O menu móvel e a visualização ampliada das fotografias são os componentes interativos.
 
-First, run the development server:
+## Desenvolvimento
 
-```bash
+```sh
+nvm use
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sh
+npm run lint
+npm run typecheck
+npm run build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Os contactos e as ligações para reservas estão em `src/content/site.ts`. As imagens usadas e as respetivas descrições estão em `src/content/photos.ts`. A seleção, a origem e os tratamentos estão em [docs/CURADORIA.md](docs/CURADORIA.md).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Vercel e indexação
 
-## Learn More
+Usar o preset Next.js e o Node.js 24. A revisão da V2 é feita na branch `feat/angodeserto-v2` com um Preview na Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+Configurar `SITE_URL` apenas para o ambiente Production, com a origem HTTPS oficial e verificada. O canónico, os metadados sociais, o `robots.txt` e o sitemap usam esse valor. A pré-visualização tem `noindex` e sitemap vazio. Quando a Vercel fornece `VERCEL_URL`, os metadados sociais do Preview usam o seu próprio domínio.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A migração do domínio da Netlify para a Vercel é tratada na publicação, após a aprovação do site.

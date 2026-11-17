@@ -1,71 +1,68 @@
-import "./globals.css";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import Header from "../components/Header";
-import { Inter, Playfair_Display } from "next/font/google";
+import Footer from "../components/Footer";
+import { canonicalUrl, metadataBase, socialPhoto } from "../content/seo";
+import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-export const metadata = {
-  metadataBase: new URL("https://www.angodeserto.com"),
-  title: "Ango Deserto — Turismo no Coração do Namibe",
-  description:
-    "Experiências autênticas no deserto angolano: passeios de camelo, hospedagem em tendas tradicionais e imersão cultural no Namibe.",
-  keywords: [
-    "Turismo Namibe",
-    "Deserto Angola",
-    "Passeios de Camelo",
-    "Viagens Angola",
-    "Ecoturismo Namibe",
-    "Caraculo",
-    "Visitar Namibe",
+const display = localFont({
+  src: [
+    { path: "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2", style: "normal", weight: "400" },
+    { path: "../../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2", style: "italic", weight: "400" },
   ],
+  variable: "--font-display",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
+});
 
+const body = localFont({
+  src: "../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2",
+  variable: "--font-body",
+  weight: "100 1000",
+  display: "swap",
+});
+
+const title = "Angodeserto | Rota dos Camelos no Namibe, Angola";
+const description = "Descubra a Rota dos Camelos em Caraculo, conheça o restaurante e os quartos remodelados da Angodeserto e peça a sua reserva pelo WhatsApp.";
+const shareImage = metadataBase && {
+  url: socialPhoto,
+  width: 1200,
+  height: 630,
+  alt: "Camelos da Angodeserto diante das montanhas de Caraculo",
+};
+
+export const metadata: Metadata = {
+  metadataBase,
+  title,
+  description,
+  alternates: canonicalUrl && { canonical: canonicalUrl },
+  robots: canonicalUrl ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: {
-    title: "Ango Deserto — Experiências no Deserto Angolano",
-    description:
-      "Descubra experiências culturais e naturais únicas no deserto do Namibe.",
-    url: "https://www.angodeserto.com",
-    siteName: "Ango Deserto",
-    images: [
-      {
-        url: "https://www.angodeserto.com/images/share-preview.png",
-        width: 1200,
-        height: 630,
-        alt: "Paisagem do deserto com camelos ao pôr do sol.",
-      },
-    ],
-    locale: "pt_PT",
+    title,
+    description,
+    siteName: "Angodeserto",
+    locale: "pt_AO",
     type: "website",
+    url: canonicalUrl ?? metadataBase,
+    images: shareImage ? [shareImage] : undefined,
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Ango Deserto — Turismo no Coração do Namibe",
-    description:
-      "Experiências autênticas no deserto angolano com cultura e natureza.",
-    image: "https://www.angodeserto.com/images/share-preview.png",
+    title,
+    description,
+    images: shareImage ? [shareImage] : undefined,
   },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt" className={`${inter.variable} ${playfair.variable}`}>
-      <head />
-      <body className="antialiased">
+    <html lang="pt-AO" className={`${display.variable} ${body.variable}`}>
+      <body>
+        <a className="skip-link" href="#conteudo">Saltar para o conteúdo</a>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

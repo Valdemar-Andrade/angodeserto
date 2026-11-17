@@ -1,23 +1,23 @@
-import Hero from "../components/Hero";
 import About from "../components/About";
-import Experiences from "../components/Experiences";
-import Lodging from "../components/Lodging";
-import Gallery from "../components/Gallery";
+import CamelRoute from "../components/CamelRoute";
+import Closing from "../components/Closing";
 import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Gallery from "../components/Gallery";
+import Hero from "../components/Hero";
+import Lodging from "../components/Lodging";
+import Restaurant from "../components/Restaurant";
 
 export default function Home() {
   return (
-    <main>
+    <main id="conteudo" tabIndex={-1}>
       <Hero />
-      <div className="max-w-6xl mx-auto px-6">
-        <About />
-        <Experiences />
-        <Lodging />
-        <Gallery />
-        <Contact />
-      </div>
-      <Footer />
+      <About />
+      <CamelRoute />
+      <Restaurant />
+      <Lodging />
+      <Gallery />
+      <Contact />
+      <Closing />
     </main>
   );
 }
