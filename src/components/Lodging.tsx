@@ -17,8 +17,14 @@ const roomPhotos = [
 ];
 
 const rooms = [
-  { title: "Quarto de casal", cover: photos.doubleRoom, detail: photos.doubleRoomDetail, start: 0 },
-  { title: "Quarto com beliches", cover: photos.bunkRoom, detail: photos.bunkRoomDetail, start: 2 },
+  {
+    title: "Quarto de casal", cover: photos.doubleRoom, detail: photos.doubleRoomDetail, start: 0,
+    coverSizes: "(min-width: 1280px) 481px, (min-width: 760px) 38vw, (max-width: 430px) 64vw, 78vw",
+  },
+  {
+    title: "Quarto com beliches", cover: photos.bunkRoom, detail: photos.bunkRoomDetail, start: 2,
+    coverSizes: "(min-width: 1280px) 370px, (min-width: 760px) 32vw, (max-width: 430px) 60vw, 72vw",
+  },
 ];
 
 const lodgingLink = whatsappLink("Olá, Angodeserto! Gostaria de saber mais sobre a hospedagem e consultar a disponibilidade dos quartos.");
@@ -39,21 +45,21 @@ export default function Lodging() {
         </header>
         <PhotoViewer photos={roomPhotos} label="Fotografias da hospedagem">
           <div className="rooms-grid">
-            {rooms.map(({ title, cover, detail, start }) => (
+            {rooms.map(({ title, cover, detail, start, coverSizes }) => (
               <article className="room" key={title}>
                 <div className="room-photos">
                   <button className="photo-button photo-frame room-cover" type="button" data-photo-index={start} aria-label={`Ampliar fotografia: ${title}`} aria-haspopup="dialog">
-                    <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes={start === 0 ? "(min-width: 1280px) 481px, (min-width: 760px) 38vw, 78vw" : "(min-width: 1280px) 370px, (min-width: 760px) 32vw, 72vw"} quality={80} />
+                    <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes={coverSizes} quality={80} />
                     <span className="photo-expand"><FiMaximize2 aria-hidden="true" /></span>
                   </button>
                   <button className="photo-button photo-frame room-inset" type="button" data-photo-index={start + 1} aria-label={`Ver outro ângulo: ${title}`} aria-haspopup="dialog">
-                    <Image src={detail.src} alt={detail.alt} width={detail.width} height={detail.height} sizes="(min-width: 1280px) 170px, (min-width: 760px) 14vw, 27vw" />
+                    <Image src={detail.src} alt={detail.alt} width={detail.width} height={detail.height} sizes="(min-width: 1280px) 170px, (min-width: 760px) 14vw, (max-width: 430px) 24vw, 27vw" />
                   </button>
                 </div>
                 <div className="room-caption">
                   <h3>{title}</h3>
-                  <button className="text-link" type="button" data-photo-index={start} aria-label={`Ver fotografias: ${title}`} aria-haspopup="dialog">
-                    Ver fotografias <FiMaximize2 aria-hidden="true" />
+                  <button className="text-link" type="button" data-photo-index={start} aria-label={`Abrir álbum: ${title}`} aria-haspopup="dialog">
+                    Abrir álbum <FiMaximize2 aria-hidden="true" />
                   </button>
                 </div>
               </article>

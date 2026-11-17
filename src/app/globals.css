@@ -696,6 +696,16 @@ figcaption {
   .contact-option { gap: .7rem; padding: .85rem; }
   .footer-inner { align-items: flex-start; flex-direction: column; gap: .65rem; }
 }
+@media (max-width: 430px) {
+  .hero { min-height: 100svh; }
+  .room-photos { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .room-cover { grid-column: 1 / 6; }
+  .room-inset { grid-column: 6 / 8; }
+  .room:nth-child(2) .room-cover { grid-column: 3 / 8; }
+}
+@media (max-width: 359px) {
+  .hero h1 { font-size: clamp(3.5rem, 17.35vw, 3.9rem); }
+}
 
 /* Native motion, with fully visible content when motion is reduced */
 
