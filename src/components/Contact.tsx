@@ -6,8 +6,8 @@ export default function Contact() {
   return (
     <section id="contact" className="section section--contact" aria-labelledby="contact-title" tabIndex={-1}>
       <div className="container contact-layout">
-        <div className="contact-copy reveal">
-          <p className="eyebrow">Contactos e reservas</p>
+        <div className="contact-copy">
+          <p className="eyebrow chapter-label">Contactos e reservas</p>
           <h2 id="contact-title">Vamos planear <em>a sua visita?</em></h2>
           <p className="section-text">Fale connosco sobre a Rota dos Camelos, o restaurante ou os quartos. A nossa equipa ajuda a organizar a sua visita a Caraculo.</p>
         </div>

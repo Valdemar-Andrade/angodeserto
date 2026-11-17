@@ -2,7 +2,6 @@ import About from "../components/About";
 import CamelRoute from "../components/CamelRoute";
 import Closing from "../components/Closing";
 import Contact from "../components/Contact";
-import Experiences from "../components/Experiences";
 import Gallery from "../components/Gallery";
 import Hero from "../components/Hero";
 import Lodging from "../components/Lodging";
@@ -14,7 +13,6 @@ export default function Home() {
       <Hero />
       <About />
       <CamelRoute />
-      <Experiences />
       <Restaurant />
       <Lodging />
       <Gallery />

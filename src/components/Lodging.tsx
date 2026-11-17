@@ -25,29 +25,29 @@ const lodgingLink = whatsappLink("Olá, Angodeserto! Gostaria de saber mais sobr
 
 export default function Lodging() {
   return (
-    <section id="lodging" className="section section--lodging" aria-labelledby="lodging-title" tabIndex={-1}>
+    <section id="lodging" className="section section--lodging dark-chapter" aria-labelledby="lodging-title" tabIndex={-1}>
       <div className="container">
-        <div className="section-heading reveal">
+        <header className="lodging-heading">
           <div>
-            <p className="eyebrow">Hospedagem remodelada</p>
-            <h2 id="lodging-title">Tempo <em>para descansar.</em></h2>
+            <p className="eyebrow chapter-label">Hospedagem remodelada</p>
+            <h2 id="lodging-title" className="chapter-heading">Tempo <em>para descansar.</em></h2>
           </div>
           <div>
             <p className="section-text">Depois de um dia no deserto, conheça os quartos remodelados da casa de hóspedes em Caraculo.</p>
             <a className="text-link" href={lodgingLink} target="_blank" rel="noopener">Consultar hospedagem <FiArrowUpRight aria-hidden="true" /></a>
           </div>
-        </div>
+        </header>
         <PhotoViewer photos={roomPhotos} label="Fotografias da hospedagem">
           <div className="rooms-grid">
             {rooms.map(({ title, cover, detail, start }) => (
-              <article className="room reveal" key={title}>
+              <article className="room" key={title}>
                 <div className="room-photos">
                   <button className="photo-button photo-frame room-cover" type="button" data-photo-index={start} aria-label={`Ampliar fotografia: ${title}`} aria-haspopup="dialog">
-                    <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes="(min-width: 1200px) 430px, (min-width: 760px) 37vw, 81vw" quality={80} />
+                    <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes={start === 0 ? "(min-width: 1280px) 481px, (min-width: 760px) 38vw, 78vw" : "(min-width: 1280px) 370px, (min-width: 760px) 32vw, 72vw"} quality={80} />
                     <span className="photo-expand"><FiMaximize2 aria-hidden="true" /></span>
                   </button>
                   <button className="photo-button photo-frame room-inset" type="button" data-photo-index={start + 1} aria-label={`Ver outro ângulo: ${title}`} aria-haspopup="dialog">
-                    <Image src={detail.src} alt={detail.alt} width={detail.width} height={detail.height} sizes="(min-width: 1200px) 170px, (min-width: 760px) 16vw, 29vw" />
+                    <Image src={detail.src} alt={detail.alt} width={detail.width} height={detail.height} sizes="(min-width: 1280px) 170px, (min-width: 760px) 14vw, 27vw" />
                   </button>
                 </div>
                 <div className="room-caption">

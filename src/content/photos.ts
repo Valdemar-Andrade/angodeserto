@@ -19,11 +19,17 @@ export const photos = {
     alt: "Dois visitantes próximos de um camelo, na Angodeserto",
     caption: "Um encontro na Rota dos Camelos",
   },
-  arrival: {
-    src: "/media/chegada-caraculo.webp",
-    width: 1024, height: 1365,
-    alt: "Estrada de terra e sinal da Angodeserto, com a montanha de Caraculo ao fundo",
-    caption: "À chegada a Caraculo",
+  routeLandscape: {
+    src: "/media/planicie-caraculo.webp",
+    width: 960, height: 1280,
+    alt: "Camelo na planície ensolarada, com as montanhas de Caraculo ao fundo",
+    caption: "A planície de Caraculo",
+  },
+  camelDetail: {
+    src: "/media/camelos-de-perto.webp",
+    width: 768, height: 1024,
+    alt: "Cabeças de camelos junto ao alimento, com as montanhas ao fundo",
+    caption: "De perto, em Caraculo",
   },
   camelEncounter: {
     src: "/media/encontro-camelo.webp",
@@ -145,10 +151,10 @@ export const photos = {
     alt: "Visitante montado num camelo com uma manta vermelha",
     caption: "Um passeio de camelo",
   },
-  sunset: {
-    src: "/media/poente-caraculo.webp",
+  horizon: {
+    src: "/media/horizonte-caraculo.webp",
     width: 960, height: 1280,
-    alt: "Sol a descer sobre as montanhas, visto de uma mesa ao ar livre",
+    alt: "Disco do sol baixo sobre a planície do Namibe",
     caption: "Pôr do sol em Caraculo",
   },
 } as const satisfies Record<string, Photo>;
