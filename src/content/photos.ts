@@ -1,5 +1,6 @@
 export type Photo = {
-  src: `/media/${string}.webp`;
+  src: `/media/${string}.webp` | `/api/photos/${string}` | `/api/admin/photos/${string}`;
+  unoptimized?: boolean;
   width: number;
   height: number;
   alt: string;
