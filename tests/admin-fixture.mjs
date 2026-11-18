@@ -12,7 +12,7 @@ import { hashPassword } from "../src/server/admin/password.ts";
 
 export async function bootBlobFixture() {
   const objects = new Map();
-  const token = "vercel_blob_rw_admin01_" + randomBytes(12).toString("hex");
+  const token = `fixture_test_only_admin01_${randomUUID()}`;
   const fixture = { objects, outage: false, failedReads: 0 };
   const blob = createServer(async (request, response) => {
     const json = (status, value) => response.writeHead(status, { "content-type": "application/json" }).end(JSON.stringify(value));
