@@ -4,6 +4,8 @@ export async function adminRequest<T>(path: string, input: object | Blob): Promi
     method: "POST",
     credentials: "same-origin",
     mode: "same-origin",
+    // Keep Origin on same-origin POSTs from pages served with no-referrer.
+    referrerPolicy: "strict-origin",
     headers: {
       "Content-Type": binary ? input.type : "application/json",
       "X-Angodeserto-Admin": "1",
