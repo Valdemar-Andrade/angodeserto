@@ -114,6 +114,7 @@ export async function startSite({ blob, credentials, scope = "preview" } = {}) {
     env: {
       ...env,
       ...(scope ? { VERCEL_ENV: scope } : {}),
+      ...(scope === "production" ? { VERCEL: "1" } : {}),
       VERCEL_BLOB_RETRIES: "0",
       ...blob?.config,
       ...credentials?.config,

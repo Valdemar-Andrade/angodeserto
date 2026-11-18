@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { once } from "node:events";
+import { request as httpRequest } from "node:http";
+import { Readable } from "node:stream";
 import { setTimeout } from "node:timers/promises";
 import { test } from "node:test";
 import sharp from "sharp";
+import { adminRequest } from "../src/components/admin/request.ts";
 import { parseHash } from "../src/server/admin/password.ts";
 import { issueSession } from "../src/server/admin/session.ts";
 import { bootBlobFixture, fixtureCredentials, startSite } from "./admin-fixture.mjs";
@@ -32,6 +36,17 @@ async function homepage(site, predicate) {
   }
   assert.fail("A publicação esperada não apareceu na homepage");
 }
+
+test("POST do painel conserva a origem com a política no-referrer da página", async (t) => {
+  const request = t.mock.method(globalThis, "fetch", async () => Response.json({ ok: true }));
+  await adminRequest("/api/admin/login", {});
+  const [path, options] = request.mock.calls[0].arguments;
+  assert.equal(path, "/api/admin/login");
+  assert.equal(options.mode, "same-origin");
+  assert.equal(options.credentials, "same-origin");
+  assert.equal(options.referrerPolicy, "strict-origin");
+  assert.equal(new Headers(options.headers).get("x-angodeserto-admin"), "1");
+});
 
 test("ADMIN01 num build Next.js com armazenamento Blob simulado", { timeout: 60_000 }, async (t) => {
   const blob = await bootBlobFixture();
@@ -200,17 +215,55 @@ test("ADMIN01 num build Next.js com armazenamento Blob simulado", { timeout: 60_
     assert.ok(blob.fixture.objects.has(previewPrefix + `photos/${photos[1].key}.webp`));
   });
 
-  await t.test("ambientes isolados, indisponibilidade, configuração ausente e logout", async () => {
+  await t.test("origem pública, CSRF e isolamento em produção atrás de HTTPS", async (t) => {
     assert.ok([...blob.fixture.objects.keys()].every((key) => key.startsWith(previewPrefix)));
     const production = await startSite({ blob, credentials, scope: "production" });
-    try {
-      const prod = requests(production);
-      assert.equal((await prod.post(galleryPath, {}, { cookie })).status, 401);
-      assert.equal((await prod.get(`/api/photos/${portrait.key}`)).status, 404);
-      assert.doesNotMatch(await homepage(production, (html) => html.includes('data-photo-count="5"')), new RegExp(galleryCaption));
-    } finally {
-      await production.stop();
+    t.after(production.stop);
+    const host = "angodeserto.vercel.app";
+    const browserHeaders = {
+      host, origin: `https://${host}`,
+      "x-forwarded-host": host, "x-forwarded-proto": "https",
+      "sec-fetch-site": "same-origin", "x-angodeserto-admin": "1",
+      "content-type": "application/json",
+    };
+    async function postProduction(path, body, changes = {}) {
+      const headers = new Headers(browserHeaders);
+      for (const [name, value] of Object.entries(changes)) {
+        if (value === null) headers.delete(name);
+        else headers.set(name, value);
+      }
+      // Node fetch replaces Host with the loopback address.
+      const request = httpRequest(production.origin + path, {
+        method: "POST", headers: Object.fromEntries(headers),
+      });
+      const response = once(request, "response");
+      request.end(JSON.stringify(body));
+      const [result] = await response;
+      return new Response(Readable.toWeb(result), { status: result.statusCode });
     }
+
+    const empty = await postProduction(loginPath, {});
+    assert.equal(empty.status, 400);
+    assert.equal((await empty.json()).error, "Preencha o username e a password.");
+    for (const [label, changes] of [
+      ["origem ausente", { origin: null }],
+      ["origem nula", { origin: "null" }],
+      ["origem externa", { origin: "https://other.example" }],
+      ["esquema incorreto", { origin: `http://${host}` }],
+      ["host adulterado", { host: "other.example" }],
+      ["origem externa com encaminhamento adulterado", { origin: "https://other.example", "x-forwarded-host": "other.example" }],
+      ["origem diferente do mesmo site", { "sec-fetch-site": "same-site" }],
+      ["cabeçalho administrativo ausente", { "x-angodeserto-admin": null }],
+    ]) {
+      assert.equal((await postProduction(loginPath, {}, changes)).status, 403, label);
+    }
+    assert.equal((await postProduction(loginPath, login)).status, 200);
+    assert.equal((await postProduction(galleryPath, {}, { cookie })).status, 401);
+    assert.equal((await requests(production).get(`/api/photos/${portrait.key}`)).status, 404);
+    assert.doesNotMatch(await homepage(production, (html) => html.includes('data-photo-count="5"')), new RegExp(galleryCaption));
+  });
+
+  await t.test("indisponibilidade, configuração ausente e logout", async () => {
     blob.fixture.outage = true;
     const fallback = await startSite({ blob, credentials });
     try {
