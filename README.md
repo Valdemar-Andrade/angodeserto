@@ -18,6 +18,8 @@ npm run build
 
 Os contactos e as ligações para reservas estão em `src/content/site.ts`. As imagens usadas e as respetivas descrições estão em `src/content/photos.ts`. A seleção, a origem e os tratamentos estão em [docs/CURADORIA.md](docs/CURADORIA.md).
 
+Para configurar e testar a gestão da Galeria e dos Destaques, consulte [docs/ADMIN01.md](docs/ADMIN01.md).
+
 ## Vercel e indexação
 
 Usar o preset Next.js e o Node.js 24. A revisão da V2 é feita na branch `feat/angodeserto-v2` com um Preview na Vercel.

@@ -77,6 +77,7 @@ export default function PhotoViewer({ photos, label, children }: {
                     width={photo.width}
                     height={photo.height}
                     sizes="(min-width: 1060px) 1000px, 92vw"
+                    unoptimized={photo.unoptimized}
                     loading="eager"
                     quality={85}
                     onLoad={() => setImageResult({ src: photo.src, status: "loaded" })}
@@ -86,13 +87,13 @@ export default function PhotoViewer({ photos, label, children }: {
                 {!imageStatus && <p className="viewer-loading" role="status">A carregar fotografia…</p>}
               </div>
               <div className="viewer-footer">
-                <button className="viewer-control" type="button" aria-label="Fotografia anterior" onClick={() => step(-1)}>
+                <button className="viewer-control" type="button" aria-label="Fotografia anterior" disabled={photos.length === 1} onClick={() => step(-1)}>
                   <FiArrowLeft aria-hidden="true" />
                 </button>
                 <p aria-live="polite" aria-atomic="true">
                   {photo.caption}<span>{(active ?? 0) + 1} / {photos.length}</span>
                 </p>
-                <button className="viewer-control" type="button" aria-label="Fotografia seguinte" onClick={() => step(1)}>
+                <button className="viewer-control" type="button" aria-label="Fotografia seguinte" disabled={photos.length === 1} onClick={() => step(1)}>
                   <FiArrowRight aria-hidden="true" />
                 </button>
               </div>
